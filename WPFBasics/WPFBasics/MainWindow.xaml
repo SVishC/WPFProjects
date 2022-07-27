@@ -5,8 +5,161 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPFBasics"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        
-    </Grid>
+        Title="MainWindow" Height="800" Width="400">
+    <Border Padding="10">
+        <StackPanel Orientation="Vertical">
+
+            <!--Buttons-->
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Button Grid.Column="0" Content="Apply" Margin="0,0,10,0" VerticalContentAlignment="Center"/>
+                <Button Grid.Column="1" Content="Reset" VerticalContentAlignment="Center"/>
+                <Button Grid.Column="2" Content="Refresh" Margin="10,0,0,0" VerticalContentAlignment="Center"/>
+            </Grid>
+
+            <!-- #region Pulse Properties-->
+
+            <TextBlock Text="Pulse Properties" FontWeight="Bold" Margin="0,10"/>
+
+            <!--#region Description-->
+
+            <TextBlock Text="Description" />
+            <TextBox Padding="2"/>
+
+            <!--#endregion-->
+
+            <!-- #region Status & Revision-->
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+
+                <!--#region Status -->
+                <StackPanel Grid.Column="0" Orientation="Vertical" Margin="0 0 10 0">
+                    <TextBlock Text="Status" />
+                    <TextBox IsReadOnly="True" Background="#eee" Padding="2"/>
+                </StackPanel>
+                <!--#endregion-->
+
+                <!--#region Revision -->
+                <StackPanel Grid.Column="1" Orientation="Vertical">
+                    <TextBlock Text="Revision" />
+                    <TextBox IsReadOnly="True" Background="#eee" Padding="2"/>
+                </StackPanel>
+                <!--#endregion-->
+
+            </Grid>
+            <!--#endregion-->
+
+            <!--#region  Part Number-->
+            
+            <TextBlock Text="Part Number" />
+            <TextBox IsReadOnly="True" Background="#eee" Padding="2"/>
+            
+            <!--#endregion-->
+            
+            <!--#region  Raw Material-->
+
+            <TextBlock Text="Pulse Properties" FontWeight="Bold" Margin="0,10"/>
+
+            <TextBlock Text="Material" />
+            <ComboBox Padding="2"/>
+
+            <!--#endregion-->
+
+            <!--#region  Manufacturing Info-->
+
+            <TextBlock Text="Manufacturing Info" FontWeight="Bold" Margin="0,10"/>
+
+            <TextBlock Text="Work Centres" Margin="0,0,0,10"/>
+            
+            <!--#region CheckBoxes-->
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+
+                <!--#region Column1 -->
+                <StackPanel Grid.Column="0" Orientation="Vertical" >
+                    <CheckBox Content="Weld"/>
+                    <CheckBox Content="Assembly"/>
+                    <CheckBox Content="Plasma"/>
+                    <CheckBox Content="Laser"/>
+                    <CheckBox Content="Purchase"/>
+                </StackPanel>
+                <!--#endregion-->
+
+                <!--#region column2 -->
+                <StackPanel Grid.Column="1" Orientation="Vertical">
+                    <CheckBox Content="Lathe"/>
+                    <CheckBox Content="Drill"/>
+                    <CheckBox Content="Fold"/>
+                    <CheckBox Content="Roll"/>
+                    <CheckBox Content="Saw"/>
+                </StackPanel>
+                <!--#endregion-->
+
+            </Grid>
+            <!--#endregion-->
+
+            <TextBlock Text="Length" />
+            <TextBox Padding="2"/>
+
+
+            <TextBlock Text="Mass" />
+            <TextBox IsReadOnly="True" Background="#eee" Padding="2"/>
+
+            <!--#region Finish -->
+            
+            <TextBlock Text="Finish" />
+            <ComboBox SelectedIndex="0" Padding="2">
+                <ComboBoxItem>Painted</ComboBoxItem>
+                <ComboBoxItem>Not Painted</ComboBoxItem>
+            </ComboBox>
+
+            <!--#endregion-->
+
+            <!--#region Purchase Information -->
+
+            <TextBlock Text="Purchase Information" />
+            <ComboBox SelectedIndex="0" Padding="2">
+                <ComboBoxItem>Rubber</ComboBoxItem>
+                <ComboBoxItem>Non-Rubber</ComboBoxItem>
+            </ComboBox>
+
+            <!--#endregion-->
+
+            <TextBlock Text="Supplier Name" />
+            <TextBox Padding="2"/>
+
+            <TextBlock Text="Supplier Code" />
+            <TextBox Padding="2"/>
+            <!--#endregion-->
+
+            <!--#region  Additional Info-->
+
+            <TextBlock Text="Additional Info" FontWeight="Bold" Margin="0,10"/>
+
+            <TextBlock Text="Note" />
+            <TextBox Padding="2"/>
+
+            <!--#endregion-->
+
+            <!--#endregion-->
+
+
+
+
+        </StackPanel>
+    </Border>
 </Window>
