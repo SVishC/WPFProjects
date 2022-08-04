@@ -1,0 +1,44 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <FontFamily x:Key="LatoThin">pack://appliction;,,,/Fonts/#Lato Thin</FontFamily>
+    <FontFamily x:Key="LatoRegular">pack://appliction;,,,/Fonts/#Lato Regular</FontFamily>
+
+
+    <!--We will make few common elements font family to default to LatoRegular.so that we dont need to specify font family in every control
+    To do that we have to create a style for control from which most of the controls inherits.As below-->
+
+    <Style TargetType="{x:Type Control}"
+           x:Key="BaseStyle">
+        <Setter Property="FontFamily"
+                Value="{StaticResource LatoRegular}" />
+    </Style>
+
+    <Style TargetType="{x:Type Button}"
+           BasedOn="{StaticResource BaseStyle}" />
+    <!--This Globally sets the font family to be Lato Regular for all the buttons in the application-->
+    
+    <Style TargetType="{x:Type Label}"
+           BasedOn="{StaticResource BaseStyle}" />
+    
+    <Style TargetType="{x:Type ListView}"
+           BasedOn="{StaticResource BaseStyle}" />
+    
+    <Style TargetType="{x:Type TextBox}"
+           BasedOn="{StaticResource BaseStyle}" />
+
+
+
+
+
+    <!--As Textblock doesnt inherit from control we need to have seperate base style for text blocks-->
+    <Style TargetType="{x:Type TextBlock}"
+           x:Key="BaseTextBlockStyle">
+        <Setter Property="FontFamily"
+                Value="{StaticResource LatoRegular}" />
+    </Style>
+    
+    <Style TargetType="{x:Type TextBlock}"
+           BasedOn="{StaticResource BaseTextBlockStyle}" />
+
+</ResourceDictionary>
