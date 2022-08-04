@@ -1,0 +1,13 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/WPFBasics/WPFBasics/bin/Debug
+/WPFBasics/WPFBasics/obj
+/WpfTreeViewusingMVVM/WpfTreeView/WpfTreeView/bin/Debug
+/WpfTreeViewusingMVVM/WpfTreeView/WpfTreeView/obj/Debug
+/WpfTreeViewusingMVVM/WpfTreeView/WpfTreeView/obj/Release
+/WpfTreeViewAndValueConverters/WpfTreeView/.vs/WpfTreeView/v16
+/WpfTreeViewAndValueConverters/WpfTreeView/WpfTreeView/obj
+/WpfTreeViewAndValueConverters/WpfTreeView/WpfTreeView/bin/Debug
+/WpfTreeViewusingMVVM/WpfTreeView/.vs/WpfTreeView/v16
