@@ -1,6 +1,7 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
+    <Color x:Key="ForegroundLight">#ffffff</Color>
     <Color x:Key="BackgroundLight">#efefef</Color>
     <SolidColorBrush x:Key="BackgroundLightBrush"
                      Color="{StaticResource BackgroundLight}" />
@@ -18,7 +19,7 @@
                      Color="{StaticResource ForegroundVeryDark}" />
 
     <!--Just another way-->
-    <SolidColorBrush x:Key="ForegroundLight"
+    <SolidColorBrush x:Key="ForegroundLightBrush"
                      Color="#ffffff" />
 
 </ResourceDictionary>

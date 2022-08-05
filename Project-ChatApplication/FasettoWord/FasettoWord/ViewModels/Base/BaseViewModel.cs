@@ -11,7 +11,7 @@ namespace FasettoWord
     [AddINotifyPropertyChangedInterface]
     public class BaseViewModel : INotifyPropertyChanged
     {
-        public event PropertyChangedEventHandler PropertyChanged;
+        public event PropertyChangedEventHandler PropertyChanged=(sender,e)=> { };
 
 
         /// <summary>
