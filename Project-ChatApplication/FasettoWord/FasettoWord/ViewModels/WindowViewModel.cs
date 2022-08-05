@@ -153,6 +153,9 @@ namespace FasettoWord
             CloseCommand = new RelayCommand(() => mWindow.Close());
 
             MenuCommand = new RelayCommand(() => SystemCommands.ShowSystemMenu(mWindow, GetMousePosition()));
+
+            //Fix to the issue of window overlapping taskbar when maximized
+            var resizer = new WindowResizer(mWindow);
         }
 
         #region Helpers
