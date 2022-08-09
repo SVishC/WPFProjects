@@ -31,6 +31,11 @@ namespace FasettoWord
         /// </summary>
         private int mWindowRadius = 10;
 
+        /// <summary>
+        /// The last known dock position
+        /// </summary>
+        private WindowDockPosition mDockPosition = WindowDockPosition.Undocked;
+
 
         #endregion
 
@@ -46,6 +51,12 @@ namespace FasettoWord
 
         #endregion
 
+        #region Properties
+        /// <summary>
+        /// True if the window should be borderless because it is docked or maximized
+        /// </summary>
+        public bool Borderless { get { return (mWindow.WindowState == WindowState.Maximized || mDockPosition != WindowDockPosition.Undocked); } }
+
         /// <summary>
         /// Property for the window's minimum width
         /// </summary>
@@ -59,7 +70,8 @@ namespace FasettoWord
         /// <summary>
         /// Actual numerical value of the resize border (How far the <-> resize cursor can come inside from the margin)
         /// </summary>
-        public int ResizeBorder { get; set; } = 6;
+        //public int ResizeBorder { get; set; } = 6;
+        public int ResizeBorder { get { return Borderless ? 0 : 6; } } //This Borderless check is needed other when window is maximized or docked we cannot drag from top corner
 
         /// <summary>
         /// The thickness property that is bound to the window chrome's ResizeBorderThickness Property.
@@ -76,7 +88,7 @@ namespace FasettoWord
         {
             get
             {
-                return mWindow.WindowState == WindowState.Maximized ? 0 : mOuterMarginSize; //When the screen is maximized we dont have the drop shadow so we can remove the outer margin
+                return Borderless ? 0 : mOuterMarginSize; //When the screen is maximized or Docked (left or right )we dont have the drop shadow so we can remove the outer margin
             }
             set
             {
@@ -99,7 +111,7 @@ namespace FasettoWord
         {
             get
             {
-                return mWindow.WindowState == WindowState.Maximized ? 0 : mWindowRadius; //When the screen is maximized we dont have to show the corner radius.
+                return Borderless ? 0 : mWindowRadius; //When the screen is maximized we dont have to show the corner radius.
             }
             set
             {
@@ -107,6 +119,7 @@ namespace FasettoWord
             }
         }
 
+        
         /// <summary>
         /// The actual CornerRadius object , which uses <see cref="WindowRadiusSize"/> value and returns the corner radius which can be bound in the xaml
         /// </summary>
@@ -125,6 +138,10 @@ namespace FasettoWord
             get { return new GridLength(TitleHeight + ResizeBorder); }
         }
 
+        public ApplicationPage CurrentPage { get; set; } = ApplicationPage.Login;
+
+        #endregion
+
         #endregion
 
         #region Constructor
@@ -136,15 +153,10 @@ namespace FasettoWord
             //Listen out for window resizing
             mWindow.StateChanged += (sender, e) => 
             {
-                //Fire off all the properties that are affected by resize
-                OnPropertyChanged(nameof(ResizeBorderThickness));
-                OnPropertyChanged(nameof(OuterMarginSize));
-                OnPropertyChanged(nameof(OuterMarginSizeThickness));
-                OnPropertyChanged(nameof(WindowRadiusSize));
-                OnPropertyChanged(nameof(WindowCornerRadius));
+                //Fire off all the properties that are affected by resize so that view knows it and updates /refresh its value which is bound in xaml
+                WindowResized();
 
             };
-
 
             //Instantiate commands
 
@@ -156,6 +168,16 @@ namespace FasettoWord
 
             //Fix to the issue of window overlapping taskbar when maximized
             var resizer = new WindowResizer(mWindow);
+
+            // Listen out for dock changes
+            resizer.WindowDockChanged += (dock) =>
+            {
+                // Store last position
+                mDockPosition = dock;
+
+                // Fire off resize events
+                WindowResized();
+            };
         }
 
         #region Helpers
@@ -167,6 +189,22 @@ namespace FasettoWord
             //we add the windows position fom the topleft edge of the screen to get the exact position.
             return new Point(position.X + mWindow.Left, position.Y + mWindow.Top);
             
+        }
+
+
+        /// <summary>
+        /// If the window resizes to a special position (docked or maximized)
+        /// this will update all required property change events to set the borders and radius values
+        /// </summary>
+        private void WindowResized()
+        {
+            // Fire off events for all properties that are affected by a resize
+            OnPropertyChanged(nameof(Borderless));
+            OnPropertyChanged(nameof(ResizeBorderThickness));
+            OnPropertyChanged(nameof(OuterMarginSize));
+            OnPropertyChanged(nameof(OuterMarginSizeThickness));
+            OnPropertyChanged(nameof(WindowRadiusSize));
+            OnPropertyChanged(nameof(WindowCornerRadius));
         }
 
         #endregion
