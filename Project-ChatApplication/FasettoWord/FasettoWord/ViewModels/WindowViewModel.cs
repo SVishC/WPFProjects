@@ -15,7 +15,7 @@ namespace FasettoWord
     {
         #region Private Members
         /// <summary>
-        /// The window this view model controls
+        /// The window ,that this view model controls
         /// </summary>
         private MainWindow mWindow;
 
@@ -71,7 +71,7 @@ namespace FasettoWord
         /// Actual numerical value of the resize border (How far the <-> resize cursor can come inside from the margin)
         /// </summary>
         //public int ResizeBorder { get; set; } = 6;
-        public int ResizeBorder { get { return Borderless ? 0 : 6; } } //This Borderless check is needed other when window is maximized or docked we cannot drag from top corner
+        public int ResizeBorder { get { return Borderless ? 0 : 6; } } //This Borderless check is needed otherwise when window is maximized or docked we cannot drag from top corner
 
         /// <summary>
         /// The thickness property that is bound to the window chrome's ResizeBorderThickness Property.
@@ -161,7 +161,7 @@ namespace FasettoWord
             //Instantiate commands
 
             MinimizeCommand = new RelayCommand(() => mWindow.WindowState = WindowState.Minimized);
-            MaximizeCommand = new RelayCommand(() => mWindow.WindowState ^= WindowState.Maximized);
+            MaximizeCommand = new RelayCommand(() => mWindow.WindowState ^= WindowState.Maximized); //If normal maximize,if already maximized set it to normal
             CloseCommand = new RelayCommand(() => mWindow.Close());
 
             MenuCommand = new RelayCommand(() => SystemCommands.ShowSystemMenu(mWindow, GetMousePosition()));
@@ -172,7 +172,7 @@ namespace FasettoWord
             // Listen out for dock changes
             resizer.WindowDockChanged += (dock) =>
             {
-                // Store last position
+                // Store latest applied dock position
                 mDockPosition = dock;
 
                 // Fire off resize events
@@ -184,7 +184,7 @@ namespace FasettoWord
 
         private Point GetMousePosition()
         {
-            var position = Mouse.GetPosition(mWindow);//This returns the mouse coordinates clicked at a distance from the topleft tip of the window.
+            var position = Mouse.GetPosition(mWindow);//This returns the mouse coordinates clicked at a distance relative to the topleft tip of the monitor.(Click point relative to topleft edge of the screen)
 
             //we add the windows position fom the topleft edge of the screen to get the exact position.
             return new Point(position.X + mWindow.Left, position.Y + mWindow.Top);

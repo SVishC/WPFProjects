@@ -15,7 +15,8 @@
         Width="900"
         MinWidth="{Binding WindowMinimumWidth}"
         MinHeight="{Binding WindowMinimumWidth}">
-
+<!--ResizeMode not needed,Window chrome will take care of it-->
+    
     <Window.Resources>
         <Style TargetType="{x:Type local:MainWindow}">
             <Setter Property="Template">
@@ -29,7 +30,7 @@
 
                             <!--Visible Main window outline-->
 
-                            <Grid>
+                            <Grid> <!--without this grid you cannot have 2 borders and another grid as child.no other signofocance for this grid-->
 
                                 <!--outline rounded margin and Dropshadow-->
 
@@ -44,7 +45,7 @@
                                         BorderBrush="{StaticResource ForegroundMainBrush}">
                                     <Border.Effect>
 
-                                        <!--This dropshadow starts at this rounder corner margin and flows outward till previous border-->
+                                        <!--This dropshadow starts at this rounded corner margin and flows outward till previous border-->
 
                                         <DropShadowEffect Color="{StaticResource ForegroundMain}"
                                                           Opacity="100"
@@ -97,9 +98,14 @@
 
                                         <!--Title Texts-->
 
-                                        <Viewbox Grid.Column="1">
-                                            <TextBlock Style="{StaticResource HeaderTextStyle}"
-                                                       Text="{Binding RelativeSource={RelativeSource TemplatedParent},Path=Title,FallbackValue='Welscome,friend !'}" />
+                                        <Viewbox Grid.Column="0"
+                                                 Grid.ColumnSpan="3" Margin="5">
+                                            <StackPanel>
+                                                <TextBlock FontFamily="{StaticResource LatoBoldr}" FontSize="{StaticResource FontSizeRegular}" Margin="0,0,0,-5"> <!--Negative margin to bring closer-->
+                                                    <Run Text="W" Foreground="{StaticResource WordOrangeBrush}"/><Run Text="O" Foreground="{StaticResource WordBlueBrush}"/><Run Text="R" Foreground="{StaticResource WordRedBrush}"/><Run Text="D" Foreground="{StaticResource WordGreenBrush}"/>
+                                                </TextBlock>
+                                                <TextBlock Text="by fasetto" TextAlignment="Center" Foreground="{StaticResource ForegroundDarkBrush}"/>
+                                            </StackPanel>
                                         </Viewbox>
 
                                         <!--Window Close COntrols-->
@@ -126,7 +132,9 @@
                                             BorderThickness="0 0.2 0 0"
                                             Height="6">
 
-                                        --><!--Undeline--><!--
+                                        -->
+                                    <!--Undeline-->
+                                    <!--
                                         <Border.BorderBrush>
                                             <LinearGradientBrush StartPoint="0,0"
                                                                  EndPoint="1,0">
@@ -140,7 +148,9 @@
 
                                         </Border.BorderBrush>
 
-                                        --><!--Showdow below the underline line--><!--
+                                        -->
+                                    <!--Showdow below the underline line-->
+                                    <!--
                                         <Border.Background>
                                             <LinearGradientBrush StartPoint="0,0"
                                                                  EndPoint="0,1">
@@ -158,8 +168,10 @@
 
                                     <!--Page Content-->
                                     <Border Grid.Row="1"
-                                            >
-                                        <ContentPresenter Content="{TemplateBinding Content}" />
+                                          >
+                                        
+                                            <ContentPresenter Content="{TemplateBinding Content}" />
+                                        
                                     </Border>
                                 </Grid>
 
@@ -180,6 +192,7 @@
                       GlassFrameThickness="0"
                       CornerRadius="0">
             <!--With glassfram thickness it will give you blue border and a titlebar like windows 7-->
+            <!--By default the window chrome has a CornerRadius,but we will take control of cornerradius in our window's control template.Hence set it to 0-->
 
         </WindowChrome>
     </WindowChrome.WindowChrome>

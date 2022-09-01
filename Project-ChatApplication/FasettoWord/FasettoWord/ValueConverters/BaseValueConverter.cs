@@ -43,7 +43,10 @@ namespace FasettoWord
 
         #endregion
 
-        #region IValue Converter Implementation
+        #region IValue Converter Implementation 
+        //Abstract again
+
+
         /// <summary>
         /// The child needs to implement its own convert and convertback method as this base is only to provide Markupextension to all the value converters
         /// </summary>

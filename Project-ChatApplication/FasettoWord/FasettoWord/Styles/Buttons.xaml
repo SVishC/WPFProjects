@@ -30,6 +30,7 @@
                 Value="10" />
         <Setter Property="WindowChrome.IsHitTestVisibleInChrome"
                 Value="True" />
+        <!--Hit testing is nothing but interaction of cursor with that control area.By deafult for window chrome hittesting is disabled-->
     </Style>
 
     <Style x:Key="WindowsButtonStyle" TargetType="Button">
