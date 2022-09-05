@@ -23,6 +23,7 @@ namespace FasettoWord.Pages
         public LoginPage()
         {
             InitializeComponent();
+
         }
     }
 }
