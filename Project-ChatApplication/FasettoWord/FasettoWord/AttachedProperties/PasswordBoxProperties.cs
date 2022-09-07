@@ -54,5 +54,6 @@ namespace FasettoWord
         {
             return (bool)element.GetValue(HasTextProperty);
         }
+
     }
 }
