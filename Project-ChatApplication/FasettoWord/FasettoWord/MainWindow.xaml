@@ -196,12 +196,15 @@
 
         </WindowChrome>
     </WindowChrome.WindowChrome>
-
+    <Border Background="{StaticResource WordBlueBrush}">
     <Grid>
+            <Grid.Background>
+                <ImageBrush ImageSource="/Images/Background/emoji-background.png" TileMode="Tile" ViewportUnits="Absolute" Viewport="0 0 500 500"/>
+            </Grid.Background>
         <!--<Button Content="Test" />-->
         <Frame x:Name="MainFrame"
                Content="{Binding CurrentPage ,Converter={local:ApplicationPageValueConverter} }" />
 
     </Grid>
-
+    </Border>
 </Window>
