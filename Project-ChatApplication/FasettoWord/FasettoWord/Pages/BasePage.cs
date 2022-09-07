@@ -66,7 +66,7 @@ namespace FasettoWord.Pages
 
 
         /// <summary>
-        /// Animates this page
+        /// Animates in this page
         /// </summary>
         public async Task AnimateIn()
         {
@@ -78,34 +78,32 @@ namespace FasettoWord.Pages
             {
                 case PageAnimation.SlideAndFadeInFromRight:
 
-                    var sb = new Storyboard();
-                    var slideAnimation = new ThicknessAnimation
-                    {
-                        Duration = new Duration(TimeSpan.FromSeconds(this.SlideSeconds)),
-                        From = new Thickness(this.WindowWidth, 0,-this.WindowWidth,0 ),
-                        To = new Thickness(0),
-                        DecelerationRatio=0.9f
-                    };
-                    Storyboard.SetTargetProperty(slideAnimation, new PropertyPath("Margin"));
-                    sb.Children.Add(slideAnimation);
-
-                    sb.Begin(this);
-
-                    this.Visibility = Visibility.Visible;
-
-                    //Since this is an async task it will fire the animation and move to the next line of code .
-                    //But as we see ,the animation runs in for SlideSeconds time.Hence we need to await for that much time before we move from this position
-
-                    await Task.Delay((int)this.SlideSeconds * 1000);
-
-
+                   await this.SlideAndFadeinFromRight(this.SlideSeconds);
                     break;
             }
             
         }
 
 
-        #endregion
+        /// <summary>
+        /// Animates out this page
+        /// </summary>
+        public async Task AnimateOut()
+        {
+            //If the animation is set to none dont animate,just return
+            if (this.PageUnLoadAnimation == PageAnimation.None)
+                return;
 
+            switch (this.PageUnLoadAnimation)
+            {
+                case PageAnimation.SlideAndFadeOutToLeft:
+
+                    await this.SlideAndFadeOutToLeft(this.SlideSeconds);
+                    break;
+            }
+
+        }
+
+        #endregion
     }
 }
