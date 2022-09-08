@@ -7,13 +7,20 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media.Animation;
 
-namespace FasettoWord.Pages
+namespace FasettoWord
 {
     /// <summary>
     /// A base page from which all the other pages will inherit to gain the common functionalities like page animation etc.,
     /// </summary>
-    public class BasePage : Page
+    public class BasePage<VM> : Page
+        where VM : BaseViewModel, new()
     {
+
+        #region Private Members
+
+        private VM mViewModel;
+
+        #endregion
 
         #region Public Properties
         /// <summary>
@@ -31,6 +38,22 @@ namespace FasettoWord.Pages
         /// The duration for which the animation will happen
         /// </summary>
         public float SlideSeconds { get; set; } = 0.8f;
+
+        public VM ViewModel
+        {
+            get { return mViewModel; }
+            set 
+            {
+                if (mViewModel == value)
+                    return;
+
+                mViewModel = new VM();
+
+
+                //Set this Pages's data context to the view model that is passed in 
+                this.DataContext = mViewModel;
+            }
+        }
         #endregion
 
 
@@ -45,6 +68,11 @@ namespace FasettoWord.Pages
                 this.Visibility = Visibility.Collapsed;
 
             this.Loaded += BasePage_Loaded;
+
+
+            //when the page loads for the first time create a new VM and store it for future use(in turn sets the data context)
+
+            this.ViewModel = new VM();
         }
 
 
