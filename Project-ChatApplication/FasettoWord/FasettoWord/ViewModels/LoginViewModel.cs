@@ -32,6 +32,9 @@ namespace FasettoWord
         public SecureString Password { get; set; }
 
 
+
+        public bool LoginIsRunning { get; set; }
+
         #endregion
 
 
@@ -66,25 +69,37 @@ namespace FasettoWord
         /// <returns></returns>
         public async Task Login(object parameter)
         {
-            if (isLoginRunning)
-                return;
+            //if (isLoginRunning)
+            //    return;
 
-            try
-            {
-                isLoginRunning = true;
-                await Task.Delay(5000);
+            //try
+            //{
+            //    isLoginRunning = true;
+            //    await Task.Delay(5000);
 
-                var email = this.Email;
+            //    var email = this.Email;
 
-                //Calls the helper to unsecure/Decrypt the Secure Password
-                var pwd = (parameter as IHavePassword).MySecurePassword.Unsecure(); //by the approach of interface IHavePassword we bypass the refereing of either page or password box directly in the view model
+            //    //Calls the helper to unsecure/Decrypt the Secure Password
+            //    var pwd = (parameter as IHavePassword).MySecurePassword.Unsecure(); //by the approach of interface IHavePassword we bypass the refereing of either page or password box directly in the view model
 
-            }
-            catch { }
-            finally
-            {
-                isLoginRunning = false;
-            }
+            //}
+            //catch { }
+            //finally
+            //{
+            //    isLoginRunning = false;
+            //}
+
+            await RunCommand(() => this.LoginIsRunning,
+                async () =>
+                {
+                    await Task.Delay(5000);
+
+                    var email = this.Email;
+
+                    //Calls the helper to unsecure/Decrypt the Secure Password
+                    var pwd = (parameter as IHavePassword).MySecurePassword.Unsecure(); //by the approach of interface IHavePassword we bypass the refereing of either page or password box directly in the view model
+                }
+               );
 
         }
 
