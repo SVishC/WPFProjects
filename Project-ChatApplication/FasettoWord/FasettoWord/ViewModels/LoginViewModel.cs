@@ -16,7 +16,7 @@ namespace FasettoWord
     {
         #region Private Members
 
-
+        private bool isLoginRunning = false;
         #endregion
 
         #region Public Members
@@ -50,7 +50,7 @@ namespace FasettoWord
 
             LoginCommand = new RelayParameterizedCommand(async (parameter) => await Login(parameter));
 
-       
+
         }
 
 
@@ -58,7 +58,7 @@ namespace FasettoWord
 
         #region Public Methods
 
-        
+
         /// <summary>
         /// The Command Execute method for Login Command
         /// </summary>
@@ -66,7 +66,26 @@ namespace FasettoWord
         /// <returns></returns>
         public async Task Login(object parameter)
         {
-            await Task.Delay(500);
+            if (isLoginRunning)
+                return;
+
+            try
+            {
+                isLoginRunning = true;
+                await Task.Delay(5000);
+
+                var email = this.Email;
+
+                //Calls the helper to unsecure/Decrypt the Secure Password
+                var pwd = (parameter as IHavePassword).MySecurePassword.Unsecure(); //by the approach of interface IHavePassword we bypass the refereing of either page or password box directly in the view model
+
+            }
+            catch { }
+            finally
+            {
+                isLoginRunning = false;
+            }
+
         }
 
         #endregion

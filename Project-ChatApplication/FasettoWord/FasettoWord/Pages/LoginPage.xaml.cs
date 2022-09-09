@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -18,11 +19,16 @@ namespace FasettoWord
     /// <summary>
     /// Interaction logic for LoginPage.xaml
     /// </summary>
-    public partial class LoginPage : BasePage<LoginViewModel>
+    public partial class LoginPage : BasePage<LoginViewModel>,IHavePassword
     {
         public LoginPage()
         {
             InitializeComponent();
         }
+
+        /// <summary>
+        /// Store the SecurePassword for this page as an element that implements <see cref="IHavePassword"/> so that this can be accessed in viewmodel
+        /// </summary>
+        public SecureString MySecurePassword => PassWordText.SecurePassword;
     }
 }
