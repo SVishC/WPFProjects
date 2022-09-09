@@ -5,6 +5,7 @@
     <FontFamily x:Key="LatoThin">pack://appliction;,,,/Fonts/#Lato Thin</FontFamily>
     <FontFamily x:Key="LatoRegular">pack://appliction;,,,/Fonts/#Lato Regular</FontFamily>
     <FontFamily x:Key="LatoBoldr">pack://appliction;,,,/Fonts/#Lato Bold</FontFamily>
+    <FontFamily x:Key="FontAwesome">pack://appliction;,,,/Fonts/#Font Awesome 6 Free-Regular-400</FontFamily>
 
 
     <!--We will make few common elements font family to default to LatoRegular.so that we dont need to specify font family in every control

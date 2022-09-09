@@ -15,5 +15,6 @@ namespace FasettoWord
         /// The Initial Login Page
         /// </summary>
         Login=0,
+        Chat=1
     }
 }

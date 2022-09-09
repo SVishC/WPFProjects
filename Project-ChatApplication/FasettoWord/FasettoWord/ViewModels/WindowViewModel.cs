@@ -60,12 +60,12 @@ namespace FasettoWord
         /// <summary>
         /// Property for the window's minimum width
         /// </summary>
-        public double WindowMinimumWidth { get; set; } = 400;
+        public double WindowMinimumWidth { get; set; } = 800;
 
         /// <summary>
         /// Property for the window's minimum Height
         /// </summary>
-        public double WindowMinimumHeight { get; set; } = 400;
+        public double WindowMinimumHeight { get; set; } = 500;
 
         /// <summary>
         /// Actual numerical value of the resize border (How far the <-> resize cursor can come inside from the margin)
@@ -138,7 +138,7 @@ namespace FasettoWord
             get { return new GridLength(TitleHeight + ResizeBorder); }
         }
 
-        public ApplicationPage CurrentPage { get; set; } = ApplicationPage.Login;
+        public ApplicationPage CurrentPage { get; set; } = ApplicationPage.Chat;
 
         #endregion
 

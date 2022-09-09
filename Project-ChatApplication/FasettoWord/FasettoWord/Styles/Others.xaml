@@ -1,0 +1,15 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:fa="http://schemas.fontawesome.io/icons/">
+
+
+
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="pack://application:,,,/Styles/Colors.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+    
+    <fa:ImageAwesome x:Key="SpinnerIcon"  Icon="Spinner" Foreground="{StaticResource BackgroundLightBrush}"/>
+    <fa:ImageAwesome x:Key="ChatIcon" Icon="Wechat" Foreground="{StaticResource BackgroundLightBrush}"/>
+    <fa:ImageAwesome x:Key="ContactIcon" Icon="User" Foreground="{StaticResource BackgroundLightBrush}"/>
+    <fa:ImageAwesome  x:Key="ImageIcon" Icon="FilePictureOutline" Foreground="{StaticResource BackgroundLightBrush}"/>
+    <fa:ImageAwesome  x:Key="CogIcon" Icon="Cog" Foreground="{StaticResource WordDarkBlueBrush}"/>
+</ResourceDictionary>

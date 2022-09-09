@@ -21,7 +21,7 @@
                         Margin="50 50 50 0">
 
                         <StackPanel>
-                            <TextBlock Text="Sign Up"
+                            <TextBlock Text="Sign In"
                                        FontSize="{StaticResource FontSizeLarge}"
                                        FontFamily="{StaticResource LatoRegular}"
                                        Foreground="{StaticResource WordBlueBrush}"/>
@@ -38,7 +38,13 @@
 
                             <PasswordBox x:Name="PassWordText" Tag="Password" Margin="0 0 0 30"/>
 
-                            <Button Content="Next" HorizontalAlignment="Center" Command="{Binding LoginCommand}" CommandParameter="{Binding ElementName=loginPage}"/>
+                            <!--Ealier this was named as Next Button-->
+                            <Button Content="Login" 
+                                    HorizontalAlignment="Center" 
+                                    Command="{Binding LoginCommand}" 
+                                    CommandParameter="{Binding ElementName=loginPage}"
+                                    local:IsBusyProperty.Value="{Binding LoginIsRunning}"
+                                    />
 
                         </StackPanel>
 

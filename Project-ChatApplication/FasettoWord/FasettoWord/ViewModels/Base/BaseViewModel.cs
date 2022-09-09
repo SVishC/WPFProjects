@@ -36,7 +36,7 @@ namespace FasettoWord
         /// <param name="updatingFlag">the expression that needs to be compiled to get the bool property flag defining is the command is already running or not"/></param>
         /// <param name="action">The action that needs to be executed based on the <see cref="updatingFlag"/> value </param>
         /// <returns></returns>
-        protected async Task RunCommand(Expression<Func<bool>> updatingFlag, Func<Task> action)
+        protected async Task RunCommand(Expression<Func<bool>> updatingFlag, Func<Task> action) //This approach may take time to implement initially,but reusability is high.So saves time in future for all button usage
         {
             //Check if the flag is true (meaning is the action/function is already running)
             if (updatingFlag.GetPropertyValueOfExpression())

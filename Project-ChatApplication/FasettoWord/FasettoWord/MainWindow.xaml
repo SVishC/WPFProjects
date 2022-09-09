@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:FasettoWord"
+        xmlns:local="clr-namespace:FasettoWord" xmlns:fa="http://schemas.fontawesome.io/icons/"
         mc:Ignorable="d"
         WindowStyle="None"
         AllowsTransparency="True"
@@ -198,13 +198,25 @@
     </WindowChrome.WindowChrome>
     <Border Background="{StaticResource WordBlueBrush}">
     <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="300"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
             <Grid.Background>
                 <ImageBrush ImageSource="/Images/Background/emoji-background.png" TileMode="Tile" ViewportUnits="Absolute" Viewport="0 0 500 500"/>
             </Grid.Background>
-        <!--<Button Content="Test" />-->
+        
         <Frame x:Name="MainFrame"
+               Grid.Column="1"
                Content="{Binding CurrentPage ,Converter={local:ApplicationPageValueConverter} }" />
 
-    </Grid>
+            <!--The side Menu Background-->
+            <local:SideMenuControl>
+                <!--<Button Content="Test"/>-->
+            </local:SideMenuControl>
+
+
+
+        </Grid>
     </Border>
 </Window>
