@@ -229,7 +229,7 @@
         <Setter Property="BorderThickness" Value="0"/>
         <Setter Property="FontSize" Value="{StaticResource FontSizeLarge}"/>
         <Setter Property="FontFamily" Value="{StaticResource FontAwesome}"/>
-        <Setter Property="Padding" Value="40"/>
+        <Setter Property="Padding" Value="100"/>
         <Setter Property="Margin" Value="0"/>
         <Setter Property="local:IsBusyProperty.Value" Value="False"/>
 

@@ -42,7 +42,7 @@
                     
                     <!--The user Content-->
 
-                    <ContentPresenter Grid.Row="1"/>
+                    <ContentPresenter Grid.Row="1" />
 
                 </Grid>
             </Border>

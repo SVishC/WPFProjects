@@ -206,13 +206,14 @@
                 <ImageBrush ImageSource="/Images/Background/emoji-background.png" TileMode="Tile" ViewportUnits="Absolute" Viewport="0 0 500 500"/>
             </Grid.Background>
         
+        <!--The Actual Page on the right side of menu-->
         <Frame x:Name="MainFrame"
                Grid.Column="1"
                Content="{Binding CurrentPage ,Converter={local:ApplicationPageValueConverter} }" />
 
-            <!--The side Menu Background-->
-            <local:SideMenuControl>
-                <!--<Button Content="Test"/>-->
+            <!--The side Menu Control-->
+            <local:SideMenuControl Grid.Column="0" >
+                <local:ChatListItemControl VerticalAlignment="Top" Height="60"/>
             </local:SideMenuControl>
 
 
