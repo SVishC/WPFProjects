@@ -213,7 +213,7 @@
 
             <!--The side Menu Control-->
             <local:SideMenuControl Grid.Column="0" >
-                <local:ChatListItemControl VerticalAlignment="Top" Height="60"/>
+                <local:ChatListControl VerticalAlignment="Top" />
             </local:SideMenuControl>
 
 

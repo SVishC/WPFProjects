@@ -5,67 +5,106 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:FasettoWord"
              mc:Ignorable="d" 
-             d:DesignHeight="60" d:DesignWidth="300">
-    
-    
-    
-    <Grid Background="{StaticResource BackgroundLightBrush}">
+             d:DesignHeight="60" d:DesignWidth="300"
+             Height="60">
 
-        <Grid.ColumnDefinitions>
+    <UserControl.Resources>
+        <Style TargetType="ContentControl" x:Key="ContentStyle">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ContentControl">
+                        <!--The Content of the item-->
+                        <Border x:Name="containerBackground"  Background="{StaticResource ForegroundLightBrush}">
+                            <Grid x:Name="container" Background="Transparent">
 
-            <!--New Message indicator bar-->
-            <ColumnDefinition Width="Auto"/>
-            <!--The profile picture-->
-            <ColumnDefinition Width="Auto"/>
-            <!--Main COntent-->
-            <ColumnDefinition Width="*"/>
+                            <Grid.ColumnDefinitions>
 
-        </Grid.ColumnDefinitions>
+                                <!--New Message indicator bar-->
+                                <ColumnDefinition Width="Auto"/>
+                                <!--The profile picture-->
+                                <ColumnDefinition Width="Auto"/>
+                                <!--Main COntent-->
+                                <ColumnDefinition Width="*"/>
 
-        <!--New Message indicator bar-->
-        <Border Width="8" Background="Red"/>
+                            </Grid.ColumnDefinitions>
 
-            <!--The profile picture padding-->
-        <Border Grid.Column="1" Padding="8">
+                            <!--New Message indicator bar-->
+                            <Border Width="4" Background="Red" Visibility="{Binding IsNewMessageAvailable,Converter={local:BooleanToVisibilityConverter},ConverterParameter=True}"/>
 
-            <!--The profile picture Background-->
-            <Border Background="{StaticResource WordBlueBrush}"
-                    Width="{Binding ActualHeight,RelativeSource={RelativeSource Self}}"
-                    CornerRadius="30"
-                    >
+                            <!--The profile picture padding-->
+                            <Border Grid.Column="1" Padding="8">
 
-             <!--The profile picture Text-->
-            <TextBlock Text="LM"
-                       Foreground="{StaticResource ForegroundLightBrush}" 
-                       VerticalAlignment="Center"
-                       HorizontalAlignment="Center"
-                       FontSize="{StaticResource FontSizeAverage}"
-                       FontFamily="{StaticResource LatoRegular}"
-                       />
-            </Border>
-         </Border>
+                                <!--The profile picture Background-->
+                                <Border Background="{Binding ProfilePictureRGB,Converter={local:StringRGBToWPFBrushConverter}}"
+                                        Width="{Binding ActualHeight,RelativeSource={RelativeSource Self}}"
+                                        CornerRadius="30">
 
-        <!--Main Content-->
-        <Border Padding="0 0 8 0" Grid.Column="2" >
-            <StackPanel VerticalAlignment="Center" Orientation="Vertical">
-                
-                <!--Name-->
-                <TextBlock Text="Luke" 
-                           FontFamily="{StaticResource LatoRegular}"
-                           Foreground="{StaticResource WordBlueBrush}"/>
-                
-                <!--Message-->
-                <TextBlock Text="This new chat app is awesome ! I bet it will be fast too"
-                           TextTrimming="CharacterEllipsis"
-                           FontFamily="{StaticResource LatoRegular}" 
-                           Foreground="{StaticResource ForegroundDarkBrush}"/>
-            </StackPanel>
-        </Border>
+                                    <!--The profile picture Text-->
+                                    <TextBlock Text="{Binding Initials}"
+                                               Foreground="{StaticResource ForegroundLightBrush}" 
+                                               VerticalAlignment="Center"
+                                               HorizontalAlignment="Center"
+                                               FontSize="{StaticResource FontSizeAverage}"
+                                               FontFamily="{StaticResource LatoRegular}"
+                                               />
+                                </Border>
+                            </Border>
+
+                            <!--Main Content-->
+                            <Border Padding="0 0 8 0" Grid.Column="2" >
+                                <StackPanel VerticalAlignment="Center" Orientation="Vertical">
+
+                                    <!--Name-->
+                                    <TextBlock Text="{Binding Name}" 
+                                               FontFamily="{StaticResource LatoRegular}"
+                                               Foreground="{StaticResource WordBlueBrush}"/>
+
+                                    <!--Message-->
+                                    <TextBlock Text="{Binding Message}"
+                                               TextTrimming="CharacterEllipsis"
+                                               FontFamily="{StaticResource LatoRegular}" 
+                                               Foreground="{StaticResource ForegroundDarkBrush}"/>
+                                </StackPanel>
+                            </Border>
 
 
 
-    </Grid>
-    
-    
-    
+                        </Grid>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <EventTrigger RoutedEvent="MouseEnter">
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <ColorAnimation To="{StaticResource WordVeryLightBlue}" Storyboard.TargetName="container" Storyboard.TargetProperty="Background.Color" Duration="0:0:0.3"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger>
+
+                            <EventTrigger RoutedEvent="MouseLeave">
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <ColorAnimation To="Transparent" Storyboard.TargetName="container" Storyboard.TargetProperty="Background.Color" Duration="0:0:0.3"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger>
+
+                            <!--<Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Background" TargetName="container" Value="{StaticResource ForegroundDarkBrush}"/>
+                            </Trigger>-->
+
+                            <DataTrigger Binding="{Binding IsSelected}" Value="True">
+                                <Setter Property="Background" TargetName="containerBackground" Value="{StaticResource WordVeryLightBlueBrush}"/>
+                            </DataTrigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            
+        </Style>
+    </UserControl.Resources>
+
+    <ContentControl d:DataContext="{x:Static local:ChatListItemDesignViewModel.Instance}"  Style="{StaticResource ContentStyle}"/>
+
+
+
 </UserControl>

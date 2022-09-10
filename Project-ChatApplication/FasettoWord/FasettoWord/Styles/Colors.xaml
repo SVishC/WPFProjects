@@ -53,5 +53,13 @@
     <SolidColorBrush x:Key="WordDarkBlueBrush"
                      Color="{StaticResource WordDarkBlue}" />
 
+    <Color x:Key="WordVeryLightBlue">#ecf6fb</Color>
+    <SolidColorBrush x:Key="WordVeryLightBlueBrush"
+                     Color="{StaticResource WordVeryLightBlue}" />
+    
+    <!--<Color x:Key="WordBlue">#3099c5</Color>
+    <SolidColorBrush x:Key="WordBlueBrush"
+                     Color="{StaticResource WordBlue}" />-->
+
 
 </ResourceDictionary>
