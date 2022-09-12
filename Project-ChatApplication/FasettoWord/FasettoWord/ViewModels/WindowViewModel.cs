@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FasettoWord.Core;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -138,7 +139,10 @@ namespace FasettoWord
             get { return new GridLength(TitleHeight + ResizeBorder); }
         }
 
-        public ApplicationPage CurrentPage { get; set; } = ApplicationPage.Chat;
+
+       //CurrentPage information should be carried out thrroughout the application 
+       //and this not referring any UI elements .Hence commenting and moving it to FassettoWord.Core project
+        //public ApplicationPage CurrentPage { get; set; } = ApplicationPage.Login;
 
         #endregion
 

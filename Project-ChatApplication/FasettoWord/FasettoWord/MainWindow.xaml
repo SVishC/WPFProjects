@@ -13,6 +13,7 @@
         Title="Welcome,friend !!"
         Height="600"
         Width="900"
+        Name="ShellWindow"
         MinWidth="{Binding WindowMinimumWidth}"
         MinHeight="{Binding WindowMinimumWidth}">
 <!--ResizeMode not needed,Window chrome will take care of it-->
@@ -209,7 +210,7 @@
         <!--The Actual Page on the right side of menu-->
         <Frame x:Name="MainFrame"
                Grid.Column="1"
-               Content="{Binding CurrentPage ,Converter={local:ApplicationPageValueConverter} }" />
+               Content="{Binding ApplicationViewModel.CurrentPage, ElementName=ShellWindow,Converter={local:ApplicationPageValueConverter} }" />
 
             <!--The side Menu Control-->
             <local:SideMenuControl Grid.Column="0" >
