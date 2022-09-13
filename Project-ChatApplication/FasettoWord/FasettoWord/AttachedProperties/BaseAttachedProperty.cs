@@ -48,8 +48,17 @@ namespace FasettoWord
         /// The attached property for this base class
         /// </summary>
         public static readonly DependencyProperty ValueProperty =
-            DependencyProperty.RegisterAttached("Value", typeof(Property), typeof(BaseAttachedProperty<Parent,Property>), new PropertyMetadata(new PropertyChangedCallback(OnValuePropertyChanged)));
+            DependencyProperty.RegisterAttached("Value", 
+                typeof(Property), 
+                typeof(BaseAttachedProperty<Parent,Property>), 
+                new PropertyMetadata(
+                    default(Property),
+                    new PropertyChangedCallback(OnValuePropertyChanged),
+                    new CoerceValueCallback(OnValuePropertyUpdated) //This CoerceValueCallback is used to tweak the value thats set to this attached property,
+                                                                    //here we use it to our convinience to get notified whenever value is set to the attached property,even when OnProperty changed doesnt fire
+                    ));
 
+  
 
         /// <summary>
         /// The callback that is fired when <see cref="ValueProperty" is changed/>
@@ -68,6 +77,25 @@ namespace FasettoWord
         }
 
 
+        /// <summary>
+        /// The callback that is fired when <see cref="ValueProperty"/> is changed,even if it is the same value
+        /// </summary>
+        /// <param name="d">The UI element that had its property changed</param>
+        /// <param name="e">The arguements for the event</param>
+        private static object OnValuePropertyUpdated(DependencyObject d, object value)
+        {
+            //call the parent function
+
+            Instance.OnValueUpdated(d, value);
+
+            //call event Listeners
+            // Instance.ValueChanged(d, e);
+
+            //return the value
+            return value;
+
+        }
+
 
         #endregion
 
@@ -79,6 +107,15 @@ namespace FasettoWord
         /// <param name="d"></param>
         /// <param name="e"></param>
         public virtual void OnValueChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        { }
+
+
+        /// <summary>
+        /// This Method that is called when any attached property of this type is set,even when the value doesn't change
+        /// </summary>
+        /// <param name="d"></param>
+        /// <param name="e"></param>
+        public virtual void OnValueUpdated(DependencyObject d, object e)
         { }
 
         #endregion

@@ -127,7 +127,7 @@
                             Visibility="{TemplateBinding local:IsBusyProperty.Value,Converter={local:BooleanToVisibilityConverter}}"/>
 
                             <!--Busy-->
-                            <TextBlock  
+                            <!--<TextBlock  
                             Text="&#xf110;" 
                             Focusable="False" 
                             HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
@@ -136,8 +136,14 @@
                             VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
                             FontFamily="{TemplateBinding FontFamily}"
                             FontSize="{TemplateBinding FontSize}"
-                            Visibility="{TemplateBinding local:IsBusyProperty.Value,Converter={local:BooleanToVisibilityConverter},ConverterParameter=False}"/>
-                            <!--<fa:ImageAwesome Icon="Spinner" Spin="True" SpinDuration="4" Visibility="{TemplateBinding local:IsBusyProperty.Value,Converter={local:BooleanToVisibilityConverter},ConverterParameter=False}" Height="40" Width="40"/>-->
+                            Visibility="{TemplateBinding local:IsBusyProperty.Value,Converter={local:BooleanToVisibilityConverter},ConverterParameter=False}"/>-->
+                            <fa:ImageAwesome Icon="Spinner" 
+                                             Spin="True" 
+                                             SpinDuration="4" 
+                                             Visibility="{TemplateBinding local:IsBusyProperty.Value,Converter={local:BooleanToVisibilityConverter},ConverterParameter=False}" 
+                                             Height="40" 
+                                             Width="40"
+                                             Foreground="{TemplateBinding Foreground}"/>
 
                         </Grid>
                     </Border>

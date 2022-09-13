@@ -16,7 +16,7 @@ namespace FasettoWord.Core
     {
         #region Private Members
 
-        private bool isLoginRunning = false;
+        //private bool isLoginRunning = false;
         #endregion
 
         #region Public Members
@@ -109,11 +109,13 @@ namespace FasettoWord.Core
 
         private async Task RegisterAsync()
         {
+            IoC.Get<ApplicationViewModel>().SideMenuVisible ^= true;
+            return;
 
-           // ((WindowViewModel)((MainWindow)Application.Current.MainWindow).DataContext).CurrentPage = ApplicationPage.Register;
-
+            // ((WindowViewModel)((MainWindow)Application.Current.MainWindow).DataContext).CurrentPage = ApplicationPage.Register;
+            IoC.Get<ApplicationViewModel>().CurrentPage = ApplicationPage.Register;
             await Task.Delay(1);
-            //TODO:Go to Register Page
+         
         }
 
         #endregion

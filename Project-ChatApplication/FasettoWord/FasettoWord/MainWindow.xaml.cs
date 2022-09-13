@@ -21,7 +21,9 @@ namespace FasettoWord
     /// </summary>
     public partial class MainWindow : Window
     {
-        public ApplicationViewModel ApplicationViewModel => new ApplicationViewModel();
+        //Commenting bcz we added this ApplicatrionViewMOdel to IoC Container and wherever needed we can take from the container
+        //public ApplicationViewModel ApplicationViewModel => new ApplicationViewModel(); 
+
         public MainWindow()
         {
             InitializeComponent();
