@@ -207,7 +207,9 @@
         <!--The Actual Page on the right side of menu-->
         <Frame x:Name="MainFrame"
                Grid.Column="1"
-               Content="{Binding ApplicationViewModel.CurrentPage, Source={x:Static local:ViewModelLocator.Instance},Converter={local:ApplicationPageValueConverter} }" />
+               d:DataContext=""
+               DataContext="{Binding ApplicationViewModel.CurrentPage, Source={x:Static local:ViewModelLocator.Instance},Converter={local:ApplicationPageValueConverter} }"
+               Content="{Binding}" />
 
         <!--Source is used to bypass the data context and ask the compiler to use the source provided-->
         

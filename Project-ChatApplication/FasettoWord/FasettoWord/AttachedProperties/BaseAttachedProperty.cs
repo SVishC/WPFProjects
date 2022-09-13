@@ -14,7 +14,7 @@ namespace FasettoWord
     /// <typeparam name="Parent">The parent class to be the attached property</typeparam>
     /// <typeparam name="Property">The type of this attached property</typeparam>
     public abstract class BaseAttachedProperty<Parent,Property>
-        where Parent: BaseAttachedProperty<Parent, Property>, new() //says parent is of its own type (so that we can use the Instance of the inherited class for calling OnValueChanged)and newable
+        where Parent:  new() //says parent is of its own type (so that we can use the Instance of the inherited class for calling OnValueChanged)and newable
     {
 
         #region Public Events
@@ -69,7 +69,7 @@ namespace FasettoWord
         {
             //call the parent function
 
-            Instance.OnValueChanged(d, e);
+            (Instance as BaseAttachedProperty<Parent, Property>)?.OnValueChanged(d, e);
 
             //call event Listeners
            // Instance.ValueChanged(d, e);
@@ -86,7 +86,7 @@ namespace FasettoWord
         {
             //call the parent function
 
-            Instance.OnValueUpdated(d, value);
+            (Instance as BaseAttachedProperty<Parent, Property>)?.OnValueUpdated(d, value);
 
             //call event Listeners
             // Instance.ValueChanged(d, e);
