@@ -109,8 +109,8 @@ namespace FasettoWord.Core
 
         private async Task RegisterAsync()
         {
-            IoC.Get<ApplicationViewModel>().SideMenuVisible ^= true;
-            return;
+            //IoC.Get<ApplicationViewModel>().SideMenuVisible ^= true; //Just to test side menu animation
+            //return;
 
             // ((WindowViewModel)((MainWindow)Application.Current.MainWindow).DataContext).CurrentPage = ApplicationPage.Register;
             IoC.Get<ApplicationViewModel>().CurrentPage = ApplicationPage.Register;
