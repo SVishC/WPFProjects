@@ -1,4 +1,4 @@
-﻿<local:BasePage x:TypeArguments="core:LoginViewModel" x:Class="FasettoWord.RegisterPage"
+﻿<local:BasePage x:TypeArguments="core:RegisterViewModel" x:Class="FasettoWord.RegisterPage"
       x:Name="loginPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -42,16 +42,20 @@
                             <!--Ealier this was named as Next Button-->
                             <Button Content="Register" 
                                     HorizontalAlignment="Center" 
-                                    Command="{Binding LoginCommand}" 
+                                    Command="{Binding RegisterCommand}" 
                                     CommandParameter="{Binding ElementName=loginPage}"
-                                    local:IsBusyProperty.Value="{Binding LoginIsRunning}"
+                                    local:IsBusyProperty.Value="{Binding RegisterIsRunning}"
                                     />
 
                         </StackPanel>
 
                     </Border>
 
-                    <Button Content="I already have an account" HorizontalAlignment="Center" Style="{StaticResource TextButton}"/>
+                    <Button 
+                        Content="I already have an account" 
+                        HorizontalAlignment="Center" 
+                        Style="{StaticResource TextButton}"
+                        Command="{Binding LoginCommand}"/>
                 </StackPanel>
 
             </ScrollViewer>

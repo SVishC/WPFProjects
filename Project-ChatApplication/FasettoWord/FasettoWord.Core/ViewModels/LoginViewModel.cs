@@ -95,12 +95,21 @@ namespace FasettoWord.Core
             await RunCommand(() => this.LoginIsRunning,
                 async () =>
                 {
-                    await Task.Delay(5000);
+                    #region Actual region with password decrypting etc.,
+                    //await Task.Delay(5000);
 
-                    var email = this.Email;
+                    //var email = this.Email;
 
-                    //Calls the helper to unsecure/Decrypt the Secure Password
-                    var pwd = (parameter as IHavePassword).MySecurePassword.Unsecure(); //by the approach of interface IHavePassword we bypass the refereing of either page or password box directly in the view model
+                    ////Calls the helper to unsecure/Decrypt the Secure Password
+                    //var pwd = (parameter as IHavePassword).MySecurePassword.Unsecure(); //by the approach of interface IHavePassword we bypass the refereing of either page or password box directly in the view model 
+                    #endregion
+
+                    #region dummy
+
+                    await Task.Delay(1000);
+                    IoC.Get<ApplicationViewModel>().GotoPage(ApplicationPage.Chat);
+
+                    #endregion
                 }
                );
 
@@ -113,7 +122,7 @@ namespace FasettoWord.Core
             //return;
 
             // ((WindowViewModel)((MainWindow)Application.Current.MainWindow).DataContext).CurrentPage = ApplicationPage.Register;
-            IoC.Get<ApplicationViewModel>().CurrentPage = ApplicationPage.Register;
+            IoC.Get<ApplicationViewModel>().GotoPage( ApplicationPage.Register);
             await Task.Delay(1);
          
         }

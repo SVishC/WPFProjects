@@ -205,12 +205,11 @@
             </Grid.Background>
         
         <!--The Actual Page on the right side of menu-->
-        <Frame x:Name="MainFrame"
-               local:NoFrameHistoryProperty.Value="True"
+        <local:PageHost
                Grid.Column="1"
                d:DataContext=""
                DataContext="{Binding ApplicationViewModel.CurrentPage, Source={x:Static local:ViewModelLocator.Instance},Converter={local:ApplicationPageValueConverter} }"
-               Content="{Binding}" />
+               CurrentPage="{Binding}" />
 
         <!--Source is used to bypass the data context and ask the compiler to use the source provided-->
         
